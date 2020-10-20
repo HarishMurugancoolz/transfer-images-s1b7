@@ -1,5 +1,5 @@
 #pragma warning(disable:4996)
-#include "../SenderTest/catch.hpp"
+#include "catch.hpp"
 #include "SenderMainFunctions.h"
 #include <iostream>
 
