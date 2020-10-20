@@ -25,6 +25,8 @@ jobs:
   
     # - name: run receiver locally
     #   run: cd Receiver && ./stor_scp.exe -p 6767 -s
+    - name: set MERGE.ini
+      run: set MREGE.INI=./merge.ini
           
     - name: run Sender
       run: ./sender.exe MERGE_STORE_SCP 0.img 1.img -p 6767
