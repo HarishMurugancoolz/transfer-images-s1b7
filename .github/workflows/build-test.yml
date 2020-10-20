@@ -1,1 +1,27 @@
+name: Build and Test
 
+on:
+  push:
+    paths-ignore:
+    - '**.md'
+  pull_request:
+    paths-ignore:
+    - '**.md'
+jobs:
+
+  build: 
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v1.0.2 
+      with:
+          vs-version: 15.0
+    
+    
+    
+    - name: msbuild solution build
+      run: MSBuild.exe D:\a\transfer-images-s1b7\transfer-images-s1b7\SenderTest1\TransferMedicalimages.vcxproj
