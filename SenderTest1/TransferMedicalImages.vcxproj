@@ -44,7 +44,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SenderMainFunctions.h" />
+    <ClInclude Include="D:\a\transfer-images-s1b7\transfer-images-s1b7\SenderTest\SenderMainFunctions.h" />
     <ClInclude Include="D:\a\transfer-images-s1b7\transfer-images-s1b7\SenderTest\catch.hpp" />
     <ClInclude Include="D:\a\transfer-images-s1b7\transfer-images-s1b7\SenderTest1\general_util.h" />
     <ClInclude Include="D:\a\transfer-images-s1b7\transfer-images-s1b7\SenderTest1\ImageList.h" />
