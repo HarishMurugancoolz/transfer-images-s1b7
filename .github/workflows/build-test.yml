@@ -31,7 +31,7 @@ jobs:
       run: move *.gcno SenderTest1 
     
     - name: move .gcda files to sender test dir
-      run:  move *.gcda SenderTest
+      run:  move *.gcda SenderTest1
     
     - name: sender coverage report
       run:  gcov -r SenderTest1\*.cpp
