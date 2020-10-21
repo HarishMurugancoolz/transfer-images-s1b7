@@ -143,26 +143,6 @@ TEST_CASE("When the instanceList pointer address,storage options and imageList i
 
 }
 
-TEST_CASE("when the address of  applicationId ,AssociationId and storage Options is given then the"
-	"openAssociation Function open the association sets the applicationID and AssociationId")
-{
-	int  applicationID = -1, associationID = -1;
-	STORAGE_OPTIONS options;
-	MC_STATUS mcStatus;
-	char* argv[] = { (char*)"sender.exe",(char*)"MERGE_STORE_SCP",(char*)"0.img",(char*)"1.img",(char*)"-p",(char*)"6767" };
-
-	int argc = 6;	InstanceNode *instanceList = NULL, *node = NULL;
-	ImageList* imgList = new ImageList;
-	TestCmdLine(argc, argv, &options);
-	mcStatus = MC_Library_Initialization(NULL, NULL, NULL);
-	mcStatus = MC_Register_Application(&applicationID, options.LocalAE);
-	addImagesToList(&options, imgList, &instanceList);
-	openAssociation(&applicationID, &associationID, &options);
-	mcStatus = MC_Get_Association_Info(associationID, &options.asscInfo);
-	REQUIRE(mcStatus == MC_NORMAL_COMPLETION);
-
-}
-
 TEST_CASE("when the options,applicationID and instanceList with no library initialization is given then read function return SAMP_FALSE")
 {
 	SAMP_BOOLEAN            sampBool;
@@ -259,4 +239,28 @@ TEST_CASE("When the imageSent as SAMP_FALSE is  given then setnodeResponseParams
 	setNodeResponseParamsOnSucces(node, &imagesSent);
 	REQUIRE(node->failedResponse==SAMP_TRUE);
 	REQUIRE(node->responseReceived == SAMP_TRUE);
+}
+
+TEST_CASE("When the Storage options,associationId and instaceList with no successfull libraray initialization then"
+"the readResponseMessages return SAMP_FALSE")
+{
+	SAMP_BOOLEAN sampBool;
+	STORAGE_OPTIONS options;
+	int associationID = -1;
+	InstanceNode   *node = NULL;
+	MC_STATUS mcStatus;
+
+	char* argv[] = { (char*)"sender.exe",(char*)"MERGE_STORE_SCP",(char*)"0.img",(char*)"1.img",(char*)"-p",(char*)"6767" };
+
+	int argc = 6;
+	InstanceNode *instanceList = NULL;
+	ImageList* imgList = new ImageList;
+	mcStatus = MC_Library_Initialization(NULL, NULL, NULL);
+	REQUIRE(mcStatus != MC_NORMAL_COMPLETION);
+	TestCmdLine(argc, argv, &options);
+	addImagesToList(&options, imgList, &instanceList);
+	node = instanceList;
+	
+	sampBool = ReadResponseMessages(&options, associationID, 1, &instanceList, NULL);
+	REQUIRE(sampBool == SAMP_FALSE);
 }
