@@ -29,9 +29,6 @@ jobs:
    
     - name: build senderTestApplication
       run: g++ SenderTest\*.cpp -I mc3inc -L mc3lib -l jansson -l libxml2 -l mc3adll64 -l mc3adll64d -l mc3adv64 -l picxm --coverage -o senderTestApp
-   
-    - name: install open cpp coverage
-      run: choco install opencppcoverage
       
     - name: move gcno to sender test dir
       run: move *.gcno SenderTest 
@@ -45,5 +42,20 @@ jobs:
     - name: move .gcda files to sender test dir
       run:  move *.gcda SenderTest
 
-    - name: sender coverage report
+    - name: sender coverage report(ImageListTest)
       run:  gcov -r SenderTest/ImageListTest.cpp
+      
+    - name: sender coverage report(ImageList)
+      run:  gcov -r SenderTest/ImageList.cpp
+      
+    - name: sender coverage report(ReadImage)
+      run:  gcov -r SenderTest/ReadImage.cpp
+      
+    - name: sender coverage report(SendImage)
+      run:  gcov -r SenderTest/SendImage.cpp
+      
+    - name: sender coverage report(general_util)
+      run:  gcov -r SenderTest/general_util.cpp
+    
+    - name: sender coverage report(SenderMainFunctions)
+      run:  gcov -r SenderTest/SenderMainFunctions.cpp
