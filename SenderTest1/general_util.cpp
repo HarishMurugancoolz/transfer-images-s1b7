@@ -1,4 +1,4 @@
-#pragma warning(disable:4996)
+
 
 #include "general_util.h"
 #include <iostream>
