@@ -16,16 +16,16 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       
-    - name: Add msbuild to PATH
-      uses: microsoft/setup-msbuild@v1.0.2 
-      with:
-          vs-version: 15.0
+   # - name: Add msbuild to PATH
+   #   uses: microsoft/setup-msbuild@v1.0.2 
+    #  with:
+    #      vs-version: 15.0
     
-    - name: msbuild Project build
-      run: MSBuild.exe D:\a\transfer-images-s1b7\transfer-images-s1b7\SenderTest1\TransferMedicalimages.vcxproj /p:configuration=debug /p:platform=x64
+   # - name: msbuild Project build
+   #   run: MSBuild.exe D:\a\transfer-images-s1b7\transfer-images-s1b7\SenderTest1\TransferMedicalimages.vcxproj /p:configuration=debug /p:platform=x64
     
-    - name: msBuild Run
-      run: D:\a\transfer-images-s1b7\transfer-images-s1b7\SenderTest1\x64\debug\TransferMedicalimages.exe
+   # - name: msBuild Run
+   #   run: D:\a\transfer-images-s1b7\transfer-images-s1b7\SenderTest1\x64\debug\TransferMedicalimages.exe
    
 
     - name: build senderTestApplication
@@ -39,5 +39,5 @@ jobs:
 
    
     - name: sender coverage report
-      run:  gcov -r SenderTest1/ImageListTest.cpp
+      run:  gcov -r SenderTest1/ImageList.cpp SenderTest1/SenderMainFunctions.cpp SenderTest1/general_util.cpp SenderTest1/SendImage.cpp SenderTest1/ReadImage.cpp
 
