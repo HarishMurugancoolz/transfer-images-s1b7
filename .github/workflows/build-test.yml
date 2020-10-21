@@ -26,3 +26,6 @@ jobs:
     
     - name: msBuild Run
       run: D:\a\transfer-images-s1b7\transfer-images-s1b7\SenderTest1\x64\debug\TransferMedicalimages.exe
+    
+    - name: sender coverage report
+      run:  gcov -r SenderTest1\*.cpp
