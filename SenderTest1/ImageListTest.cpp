@@ -1,12 +1,12 @@
 #define CATCH_CONFIG_MAIN//  This tells Catch to provide a main() - only do this in one cpp file
 
 #include "catch.hpp"
-#include "../SenderTest1/ImageList.cpp"
-#include "../SenderTest1/general_util.cpp"
-#include "../SenderTest1/SenderMainFunctions.cpp"
-#include "../SenderTest1/SendImage.cpp"
-#include "../SenderTest1/ReadImage.cpp"
-#include "../SenderTest1/ReadMessageFromFile.cpp"
+#include "ImageList.h"
+#include "general_util.h"
+#include "SenderMainFunctions.h"
+//#include "../SendImage.cpp"
+//#include "../SenderTest1/ReadImage.cpp"
+//#include "../SenderTest1/ReadMessageFromFile.cpp"
 TEST_CASE("when the character array of -p and port number and its corresponding position and storage option is given then setLocalPortNumber sets"
 "the corresponding port number")
 {
