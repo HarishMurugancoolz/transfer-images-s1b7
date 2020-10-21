@@ -43,4 +43,4 @@ jobs:
       run:  move *.gcda SenderTest
 
     - name: sender coverage report
-      run:  gcov -r SenderTest/SenderMainFunctions.cpp SenderTest/ImageList.cpp SenderTest/general_util.cpp
+      run:  gcov -r SenderTest/SenderMainFunctions.cpp SenderTest/ReadImage SenderTest/general_util.cpp
