@@ -21,7 +21,8 @@ jobs:
       with:
           vs-version: 15.0
     
-    
-    
-    - name: msbuild solution build
+    - name: msbuild Project build
       run: MSBuild.exe D:\a\transfer-images-s1b7\transfer-images-s1b7\SenderTest1\TransferMedicalimages.vcxproj /p:configuration=debug /p:platform=x64
+    
+    - name: msBuild Run
+      run: D:\a\transfer-images-s1b7\transfer-images-s1b7\SenderTest1\x64\debug\TransferMedicalimages.exe
