@@ -27,11 +27,10 @@ jobs:
     - name: msBuild Run
       run: D:\a\transfer-images-s1b7\transfer-images-s1b7\SenderTest1\x64\debug\TransferMedicalimages.exe
       
-    - name: move gcno to sender test dir
-      run: move *.gcno SenderTest1 
+  coverage:
     
-    - name: move .gcda files to sender test dir
-      run:  move *.gcda SenderTest1
-    
+    runs-on: ubuntu-latest
+   
+    steps:
     - name: sender coverage report
       run:  gcov -r SenderTest1\*.cpp
