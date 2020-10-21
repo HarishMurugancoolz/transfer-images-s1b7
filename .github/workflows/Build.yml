@@ -25,20 +25,13 @@ jobs:
   
     # - name: run receiver locally
     #   run: cd Receiver && ./stor_scp.exe -p 6767 -s
-    - name: set MERGE.ini
-      run: set MREGE.INI=./merge.ini
-          
-    - name: run Sender
-      run: ./sender.exe MERGE_STORE_SCP 0.img 1.img -p 6767
+   
    
     - name: build senderTestApplication
       run: g++ SenderTest\ImageListTest.cpp -I mc3inc -L mc3lib -l jansson -l libxml2 -l mc3adll64 -l mc3adll64d -l mc3adv64 -l picxm --coverage -o senderTestApp
    
     - name: move gcno to sender test dir
       run: move *.gcno SenderTest 
-         
-    # - name: run python script locally
-    #   run: cd EmailSender && python filepolling.py
 
     - name: move senderTestApp to mc3lib
       run: move senderTestApp.exe mc3lib
