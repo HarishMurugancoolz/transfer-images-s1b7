@@ -1,9 +1,9 @@
 #define CATCH_CONFIG_MAIN//  This tells Catch to provide a main() - only do this in one cpp file
 
 #include "catch.hpp"
-#include "../Sender/ImageList.cpp"
-#include "../Sender/general_util.cpp"
-#include "../Sender/SenderMainFunctions.cpp"
+#include "ImageList.h"
+#include "general_util.h"
+#include "SenderMainFunctions.h"
 TEST_CASE("when the character array of -p and port number and its corresponding position and storage option is given then setLocalPortNumber sets"
 "the corresponding port number")
 {
@@ -163,6 +163,53 @@ TEST_CASE("When the instanceList pointer address,storage options and imageList i
 //
 //}
 
+TEST_CASE("when the valid storage options,associationID,and node then send fucntion return SAMP_TRUE")
+{
+	STORAGE_OPTIONS options;
+	int associationID = -1;
+	InstanceNode   *node = NULL;
+	MC_STATUS mcStatus;
+
+	char* argv[] = { (char*)"sender.exe",(char*)"MERGE_STORE_SCP",(char*)"0.img",(char*)"1.img",(char*)"-p",(char*)"6767" };
+
+	int argc = 6;
+	InstanceNode *instanceList = NULL;
+	ImageList* imgList = new ImageList;
+	mcStatus = MC_Library_Initialization(NULL, NULL, NULL);
+	REQUIRE(mcStatus != MC_NORMAL_COMPLETION);
+	TestCmdLine(argc, argv, &options);
+	addImagesToList(&options, imgList, &instanceList);
+	node = instanceList;
+
+	SAMP_BOOLEAN sampBool;
+	SendImage *sender = new SendImage;
+	
+	sampBool = sender->send(&options, associationID, node);
+	REQUIRE(sampBool == SAMP_TRUE);
+}
+
+TEST_CASE("When the imageSent as SAMP_TRUE are given then setnodeResponseParamsOnSucces set the imagesSent count to 1")
+{
+	STORAGE_OPTIONS options;
+	int associationID = -1;
+	InstanceNode   *node = NULL;
+	MC_STATUS mcStatus;
+
+	char* argv[] = { (char*)"sender.exe",(char*)"MERGE_STORE_SCP",(char*)"0.img",(char*)"1.img",(char*)"-p",(char*)"6767" };
+
+	int argc = 6;
+	InstanceNode *instanceList = NULL;
+	ImageList* imgList = new ImageList;
+	mcStatus = MC_Library_Initialization(NULL, NULL, NULL);
+	REQUIRE(mcStatus != MC_NORMAL_COMPLETION);
+	TestCmdLine(argc, argv, &options);
+	addImagesToList(&options, imgList, &instanceList);
+	node = instanceList;
+	node->imageSent = SAMP_TRUE;
+	int imagesSent = 0;
+	setNodeResponseParamsOnSucces(node, &imagesSent);
+	REQUIRE(imagesSent == 1);
+}
 
 
 TEST_CASE("When the imageSent as SAMP_TRUE are given then setnodeResponseParamsOnSucces set the imagesSent count to 1")
