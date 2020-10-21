@@ -4,9 +4,6 @@
 #include "../Sender/ImageList.cpp"
 #include "../Sender/general_util.cpp"
 #include "../Sender/SenderMainFunctions.cpp"
-#include "../Sender/ReadImage.cpp"
-#include "../Sender/SendImage.cpp"
-#include "../Sender/ReadMessageFromFile.cpp"
 TEST_CASE("when the character array of -p and port number and its corresponding position and storage option is given then setLocalPortNumber sets"
 "the corresponding port number")
 {
