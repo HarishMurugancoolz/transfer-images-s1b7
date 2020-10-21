@@ -162,52 +162,8 @@ TEST_CASE("When the instanceList pointer address,storage options and imageList i
 //	REQUIRE(mcStatus == MC_NORMAL_COMPLETION);
 //
 //}
-TEST_CASE("when the options,applicationID and instanceList with no library initialization is given then read function return SAMP_FALSE")
-{
-	SAMP_BOOLEAN            sampBool;
-	ReadImage* reader = new ReadImage;
-	STORAGE_OPTIONS options;
-	int applicationID = -1;
-	InstanceNode   *node = NULL;
-	MC_STATUS mcStatus;
-	
-	char* argv[] = { (char*)"sender.exe",(char*)"MERGE_STORE_SCP",(char*)"0.img",(char*)"1.img",(char*)"-p",(char*)"6767" };
 
-	int argc = 6;
-	InstanceNode *instanceList = NULL;
-	ImageList* imgList = new ImageList;
-	mcStatus = MC_Library_Initialization(NULL, NULL, NULL);
-	REQUIRE(mcStatus != MC_NORMAL_COMPLETION);
-	TestCmdLine(argc, argv, &options);
-	addImagesToList(&options, imgList, &instanceList);
-	node = instanceList;
-	sampBool = reader->read(&options, applicationID, node);
-	REQUIRE(sampBool == SAMP_FALSE);
-}
-TEST_CASE("when the valid storage options,associationID,and node then send fucntion return SAMP_TRUE")
-{
-	STORAGE_OPTIONS options;
-	int associationID = -1;
-	InstanceNode   *node = NULL;
-	MC_STATUS mcStatus;
 
-	char* argv[] = { (char*)"sender.exe",(char*)"MERGE_STORE_SCP",(char*)"0.img",(char*)"1.img",(char*)"-p",(char*)"6767" };
-
-	int argc = 6;
-	InstanceNode *instanceList = NULL;
-	ImageList* imgList = new ImageList;
-	mcStatus = MC_Library_Initialization(NULL, NULL, NULL);
-	REQUIRE(mcStatus != MC_NORMAL_COMPLETION);
-	TestCmdLine(argc, argv, &options);
-	addImagesToList(&options, imgList, &instanceList);
-	node = instanceList;
-
-	SAMP_BOOLEAN sampBool;
-	SendImage *sender = new SendImage;
-	
-	sampBool = sender->send(&options, associationID, node);
-	REQUIRE(sampBool == SAMP_TRUE);
-}
 
 TEST_CASE("When the imageSent as SAMP_TRUE are given then setnodeResponseParamsOnSucces set the imagesSent count to 1")
 {
