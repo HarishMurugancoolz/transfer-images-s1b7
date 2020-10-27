@@ -26,4 +26,4 @@ jobs:
       run: pyinstaller --onefile ./subscribeDiagonisedImageNameAndUpdateStatus_test.py
     
     - name: run executable
-      run: ./subscribeDiagonisedImageNameAndUpdateStatus_test.py
+      run: D:\a\transfer-images-s1b7\transfer-images-s1b7\dist\subscribeDiagonisedImageNameAndUpdateStatus_test.exe
