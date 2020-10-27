@@ -23,4 +23,4 @@ jobs:
       run: pip install pyinstaller
      
     - name: build python file
-      run: ./EmailSender/filePolling.py
+      run: pyinstaller --onefile ./EmailSender/filePolling.py
