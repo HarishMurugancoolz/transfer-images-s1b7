@@ -23,4 +23,7 @@ jobs:
       run: pip install pyinstaller
      
     - name: build python file
-      run: pyinstaller --onefile ./EmailSender/filePolling.py
+      run: pyinstaller --onefile ./subscribeDiagonisedImageNameAndUpdateStatus_test.py
+    
+    - name: run executable
+      run: ./dist/subscribeDiagonisedImageNameAndUpdateStatus_test.exe
