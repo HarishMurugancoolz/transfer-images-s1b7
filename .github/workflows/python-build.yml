@@ -1,0 +1,26 @@
+name: Python package
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.x
+      uses: actions/setup-python@v2
+      with:
+        
+        python-version: '3.x' 
+        architecture: 'x64' 
+        
+    - name: Display Python version
+      run: python -c "import sys; print(sys.version)"
+      
+    - name: install pyinstaller
+      run: pip install pyinstaller
+     
+    - name: build python file
+      run: ./EmailSender/filePolling.py
